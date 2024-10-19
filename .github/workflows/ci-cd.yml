@@ -39,13 +39,7 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          creds: |
-            {
-            "clientId": "c448f917-8bae-4cda-b3d7-c5e67abac89e",
-            "clientSecret": "zC18Q~REhEpxy2VHhAgyJygBgK.6x1XHDUa9KbD.",
-            "subscriptionId": "563c6d07-c899-49cd-bd5f-6c2e07914e35",
-            "tenantId": "11dbbfe2-89b8-4549-be10-cec364e59551"
-            }
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure
         run: |

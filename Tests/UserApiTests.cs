@@ -116,6 +116,7 @@ namespace UserAuthAPITest
             // Valida a estrutura do JSON
             var validationResult = responseJson.IsValid(schema, out IList<string> errorMessages);
             Assert.IsTrue(validationResult, "Erros na validação do esquema JSON: " + string.Join(", ", errorMessages));
+            //
         }
 
 
