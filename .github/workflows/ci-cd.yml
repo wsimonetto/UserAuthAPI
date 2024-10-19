@@ -19,7 +19,7 @@ jobs:
         with:
           dotnet-version: '8.x'
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore UserAuthAPI.sln
       - name: Build
         run: dotnet build --configuration Debug
       - name: List directory contents
