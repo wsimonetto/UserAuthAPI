@@ -21,7 +21,7 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore UserAuthAPI.sln
       - name: Build
-        run: dotnet build --configuration Debug
+        run: dotnet build UserAuthAPI.sln --configuration Debug
       - name: List directory contents
         run: ls -R ./bin/Debug/net8.0
       - name: Build Docker image
