@@ -74,7 +74,6 @@ namespace UserAuthAPITest
         }
 
 
-
         [Test]
         public async Task Test_CadastroUsuario_EstruturaCorreta()
         {
