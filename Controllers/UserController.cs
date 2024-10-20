@@ -101,26 +101,6 @@ namespace UserAuthAPI.Controllers
             return NoContent();
         }
 
-        //[HttpPost("login")]
-        //public async Task<IActionResult> Login([FromBody] LoginRequest request)
-        //{
-        //    if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
-        //    {
-        //        _logger.LogWarning("Tentativa de login com email ou senha ausente.");
-        //        return BadRequest("Email e senha são obrigatórios.");
-        //    }
-
-        //    var user = await _userService.LoginAsync(request.Email, request.Password);
-        //    if (user == null)
-        //    {
-        //        _logger.LogWarning("Tentativa de login falhou para o email: {Email}", request.Email);
-        //        return Unauthorized();
-        //    }
-
-        //    _logger.LogInformation("Login bem-sucedido para o usuário: {Email}", request.Email);
-        //    return Ok(user);
-        //}
-
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {

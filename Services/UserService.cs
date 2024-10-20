@@ -20,7 +20,10 @@ namespace UserAuthAPI.Services
         public async Task<UserModel> CreateUserAsync(UserModel user)
         {
 
-            var existingUser = await GetUserByEmailAsync(email: user.Email);
+            var email = user.Email ?? throw new ArgumentException("O e-mail é obrigatório.", nameof(user.Email));
+            var password = user.PasswordHash ?? throw new ArgumentException("A senha é obrigatória.", nameof(user.PasswordHash));
+
+            var existingUser = await GetUserByEmailAsync(email);
             if (existingUser != null)
             {
                 throw new Exception("Um usuário com esse e-mail já está cadastrado.");
@@ -30,7 +33,6 @@ namespace UserAuthAPI.Services
             await _context.Users.InsertOneAsync(user);
             return user;
         }
-
 
         public async Task<UserModel> GetUserByIdAsync(string id)
         {
@@ -71,8 +73,7 @@ namespace UserAuthAPI.Services
             var usuario = await GetUserByEmailAsync(email);
             if (usuario == null || !BCrypt.Net.BCrypt.Verify(password, usuario.PasswordHash))
             {
-                // Retornar null em vez de lançar exceção
-                return null;
+                throw new UnauthorizedAccessException("Credenciais inválidas.");
             }
             return usuario;
         }

@@ -10,8 +10,8 @@ namespace UserAuthAPITest.Steps
     public class UserRegisterSteps
     {
         private readonly IUserService _userService;
-        private string _email;
-        private string _password;
+        private string? _email;
+        private string? _password;
         private bool _isRegistered;
 
         public UserRegisterSteps(IUserService userService)
@@ -29,8 +29,10 @@ namespace UserAuthAPITest.Steps
         [When(@"o usuário se cadastra")]
         public async Task QuandoOUsuarioSeCadastra()
         {
-            // Aqui você deve gerar o hash da senha usando o IPasswordService
-            string passwordHash = HashPassword(_password); // Supondo que você tenha um método para isso
+            var password = _password ?? throw new ArgumentException("A senha é obrigatória para o cadastro.", nameof(_password));
+
+            // Gerar o hash da senha usando o IPasswordService
+            string passwordHash = HashPassword(password);
 
             var userModel = new UserModel
             {

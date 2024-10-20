@@ -31,8 +31,8 @@ jobs:
         run: dotnet test UserAuthAPI.sln --logger "trx;LogFileName=test_results.trx"
 
       - name: Publish Test Results
-        if: always() # Sempre publica os resultados dos testes, mesmo se algum falhar
-        uses: actions/upload-artifact@v3
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: Test Results
           path: "**/test_results.trx"

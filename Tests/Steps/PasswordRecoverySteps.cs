@@ -10,7 +10,7 @@ namespace UserAuthAPITest.Steps
     public class PasswordRecoverySteps
     {
         private readonly IUserService _userService;
-        private string _email;
+        private string? _email;
         private bool _isEmailSent;
 
         public PasswordRecoverySteps(IUserService userService)
@@ -27,6 +27,11 @@ namespace UserAuthAPITest.Steps
         [When(@"o usuário solicita a recuperação de senha")]
         public async Task QuandoOUsuarioSolicitaARecuperacaoDeSenha()
         {
+            if (string.IsNullOrEmpty(_email))
+            {
+                throw new ArgumentException("O e-mail não pode ser nulo ou vazio.", nameof(_email));
+            }
+
             _isEmailSent = await _userService.SendPasswordRecoveryInstructionsAsync(_email);
         }
 

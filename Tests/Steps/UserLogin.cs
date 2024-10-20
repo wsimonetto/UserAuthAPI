@@ -11,8 +11,8 @@ namespace UserAuthAPITest.Steps
     public class UserLogin
     {
         private readonly IUserService _userService;
-        private UserModel _user;
-        private Exception _loginException;
+        private UserModel? _user;
+        private Exception? _loginException;
 
         public UserLogin(IUserService userService)
         {
