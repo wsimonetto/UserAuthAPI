@@ -12,7 +12,6 @@ namespace UserAuthAPITest
     {
         private HttpClient _client = new HttpClient { BaseAddress = new Uri("https://atividadebdd.azurewebsites.net/") };
 
-
         [SetUp]
         public void Setup()
         {
