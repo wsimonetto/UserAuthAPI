@@ -5,9 +5,6 @@ using Newtonsoft.Json.Schema;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using UserAuthAPI.Models;
-using Moq;
-using UserAuthAPI.Repositories;
-using UserAuthAPI.Services;
 
 namespace UserAuthAPITest
 {

@@ -5,7 +5,6 @@ using UserAuthAPI.Services;
 using Serilog;
 using Serilog.Sinks.File;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Configura o Serilog para gravar logs em um arquivo
