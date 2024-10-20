@@ -1,7 +1,5 @@
 ﻿using System.Net;
-using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
 using Newtonsoft.Json.Linq;
@@ -12,13 +10,20 @@ namespace UserAuthAPITest
 {
     public class UserApiTests
     {
-        private HttpClient _client;
+        private HttpClient _client = new HttpClient { BaseAddress = new Uri("https://atividadebdd.azurewebsites.net/") };
+
 
         [SetUp]
         public void Setup()
         {
-            // Inicializa o HttpClient para as requisições
-            _client = new HttpClient { BaseAddress = new System.Uri("https://atividadebdd.azurewebsites.net/") };
+            _client = new HttpClient { BaseAddress = new Uri("https://atividadebdd.azurewebsites.net/") };
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            // Liberar recursos do HttpClient após os testes
+            _client.Dispose();
         }
 
         [Test]
@@ -72,7 +77,6 @@ namespace UserAuthAPITest
             Assert.IsTrue(responseBody.Contains("Usuário não encontrado.") || responseBody.Contains("The emailRequest field is required."),
                 "A resposta não contém a mensagem esperada para e-mail inválido.");
         }
-
 
         [Test]
         public async Task Test_CadastroUsuario_EstruturaCorreta()
