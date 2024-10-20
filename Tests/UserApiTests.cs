@@ -5,11 +5,16 @@ using Newtonsoft.Json.Schema;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using UserAuthAPI.Models;
+using Moq;
+using UserAuthAPI.Repositories;
+using UserAuthAPI.Services;
 
 namespace UserAuthAPITest
 {
+    [TestFixture]
     public class UserApiTests
     {
+
         private HttpClient _client = new HttpClient { BaseAddress = new Uri("https://atividadebdd.azurewebsites.net/") };
 
         [SetUp]
