@@ -1,0 +1,38 @@
+name: CI - Run Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Restore dependencies
+        run: dotnet restore UserAuthAPI.sln
+
+      - name: Build
+        run: dotnet build UserAuthAPI.sln --configuration Debug
+
+      - name: Run Tests
+        run: dotnet test UserAuthAPI.sln --logger "trx;LogFileName=test_results.trx"
+
+      - name: Publish Test Results
+        if: always() # Sempre publica os resultados dos testes, mesmo se algum falhar
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test Results
+          path: **/test_results.trx
